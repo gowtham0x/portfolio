@@ -110,7 +110,7 @@ const Hero = () => {
                         <span>View Projects</span>
                         <FaArrowRight />
                     </button>
-                    <a href="/Gowtham.pdf" className="btn btn-secondary" download>
+                    <a href={`${import.meta.env.BASE_URL}Gowtham.pdf`} className="btn btn-secondary" download>
                         <span>Download Resume</span>
                         <FaDownload />
                     </a>
