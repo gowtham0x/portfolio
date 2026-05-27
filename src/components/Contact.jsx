@@ -56,7 +56,7 @@ const Contact = () => {
                             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingTop: '4rem', borderTop: '1px solid rgba(255,255,255,0.05)' }}>
                                 <div style={{ display: 'flex', gap: '3rem' }}>
                                     <Magnetic>
-                                        <a href="https://github.com/whoamikiddie" target="_blank" rel="noreferrer" className="btn" style={{ border: 'none', padding: '0', fontSize: '0.875rem', fontWeight: 600 }}>
+                                        <a href="https://github.com/gowtham0x" target="_blank" rel="noreferrer" className="btn" style={{ border: 'none', padding: '0', fontSize: '0.875rem', fontWeight: 600 }}>
                                             GITHUB_
                                         </a>
                                     </Magnetic>

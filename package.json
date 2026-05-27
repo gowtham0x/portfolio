@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://whoamikiddie.github.io/portfolio",
+  "homepage": "https://gowtham0x.github.io/portfolio",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
