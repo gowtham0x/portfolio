@@ -22,87 +22,71 @@ const Navbar = () => {
     };
 
     const navLinks = [
-        { name: 'Home', id: 'hero' },
+        { name: 'Index', id: 'hero' },
+        { name: 'Works', id: 'projects' },
         { name: 'About', id: 'about' },
-        { name: 'Skills', id: 'skills' },
-        { name: 'Projects', id: 'projects' },
         { name: 'Contact', id: 'contact' }
     ];
 
     return (
-        <motion.nav
-            className={`navbar ${scrolled ? 'scrolled' : ''}`}
-            initial={{ y: -100 }}
-            animate={{ y: 0 }}
-            transition={{ duration: 0.5 }}
-        >
-            <div className="nav-container">
-                <motion.div
-                    className="nav-logo"
-                    whileHover={{ scale: 1.05 }}
+        <header style={{ 
+            position: 'fixed', 
+            top: 0, 
+            left: 0, 
+            right: 0, 
+            zIndex: 100, 
+            padding: '2rem 0',
+            pointerEvents: 'none'
+        }}>
+            <div className="container" style={{ 
+                display: 'flex', 
+                justifyContent: 'space-between', 
+                alignItems: 'center',
+                pointerEvents: 'auto'
+            }}>
+                <motion.div 
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    style={{ 
+                        fontFamily: 'var(--font-display)', 
+                        fontWeight: '900', 
+                        fontSize: '1.25rem',
+                        cursor: 'pointer'
+                    }}
+                    onClick={() => scrollToSection('hero')}
                 >
-                    <span className="logo-bracket">[</span>
-                    <span className="logo-text">Gowtham</span>
-                    <span className="logo-bracket">]</span>
+                    GOWTHAM<span style={{ color: 'var(--accent-color)' }}>.</span>
                 </motion.div>
 
-                <ul className="nav-links">
-                    {navLinks.map((link, index) => (
-                        <motion.li
-                            key={link.id}
-                            initial={{ opacity: 0, y: -20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: index * 0.1 }}
-                        >
-                            <button
-                                onClick={() => scrollToSection(link.id)}
-                                className="nav-link"
-                            >
-                                <span className="nav-link-text">{link.name}</span>
-                                <span className="nav-link-line"></span>
-                            </button>
-                        </motion.li>
-                    ))}
-                </ul>
-
-                {/* Mobile Menu Button */}
-                <button
-                    className={`mobile-menu-btn ${mobileMenuOpen ? 'active' : ''}`}
-                    onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                    aria-label="Toggle menu"
-                >
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
-            </div>
-
-            {/* Mobile Menu */}
-            <AnimatePresence>
-                {mobileMenuOpen && (
-                    <motion.div
-                        className="mobile-menu"
-                        initial={{ opacity: 0, height: 0 }}
-                        animate={{ opacity: 1, height: 'auto' }}
-                        exit={{ opacity: 0, height: 0 }}
-                        transition={{ duration: 0.3 }}
-                    >
-                        {navLinks.map((link, index) => (
-                            <motion.button
-                                key={link.id}
-                                onClick={() => scrollToSection(link.id)}
-                                className="mobile-nav-link"
-                                initial={{ opacity: 0, x: -20 }}
-                                animate={{ opacity: 1, x: 0 }}
-                                transition={{ delay: index * 0.1 }}
-                            >
-                                {link.name}
-                            </motion.button>
+                <nav style={{ 
+                    background: scrolled ? 'rgba(9, 9, 11, 0.8)' : 'transparent',
+                    backdropFilter: scrolled ? 'blur(10px)' : 'none',
+                    padding: '0.5rem',
+                    borderRadius: '100px',
+                    border: scrolled ? '1px solid rgba(255,255,255,0.05)' : '1px solid transparent',
+                    transition: 'all 0.4s var(--ease-out-expo)'
+                }}>
+                    <ul style={{ listStyle: 'none', display: 'flex', gap: '0.5rem' }}>
+                        {navLinks.map((link) => (
+                            <li key={link.id}>
+                                <button
+                                    onClick={() => scrollToSection(link.id)}
+                                    className="btn"
+                                    style={{ 
+                                        border: 'none', 
+                                        padding: '0.5rem 1.25rem', 
+                                        fontSize: '0.75rem',
+                                        background: 'transparent'
+                                    }}
+                                >
+                                    {link.name}
+                                </button>
+                            </li>
                         ))}
-                    </motion.div>
-                )}
-            </AnimatePresence>
-        </motion.nav>
+                    </ul>
+                </nav>
+            </div>
+        </header>
     );
 };
 

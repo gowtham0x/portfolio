@@ -1,91 +1,78 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
-import { FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa';
+import { FaGithub, FaLinkedin } from 'react-icons/fa';
+import Magnetic from './Magnetic';
 
 const Contact = () => {
     const ref = useRef(null);
     const isInView = useInView(ref, { once: true, margin: "-100px" });
 
-    const socialLinks = [
-        {
-            name: 'Email Me',
-            icon: FaEnvelope,
-            href: 'mailto:sgowtham28122004@gmail.com',
-            color: '#00f5c4'
-        },
-        {
-            name: 'GitHub',
-            icon: FaGithub,
-            href: 'https://github.com/whoamikiddie',
-            color: '#ffffff'
-        },
-        {
-            name: 'LinkedIn',
-            icon: FaLinkedin,
-            href: 'https://www.linkedin.com/in/gowtham-s-b79478275',
-            color: '#0077b5'
-        }
-    ];
-
     return (
-        <section id="contact" className="contact-section">
+        <section id="contact" className="section" style={{ minHeight: '100dvh', display: 'flex', alignItems: 'center' }}>
             <div className="container">
-                <motion.div
-                    ref={ref}
-                    initial={{ opacity: 0, y: 50 }}
-                    animate={isInView ? { opacity: 1, y: 0 } : {}}
-                    transition={{ duration: 0.6 }}
-                >
-                    <h2 className="section-title">
-                        Get In <span className="gradient-text">Touch</span>
-                    </h2>
-                </motion.div>
-
-                <motion.p
-                    className="contact-text"
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={isInView ? { opacity: 1, y: 0 } : {}}
-                    transition={{ duration: 0.6, delay: 0.2 }}
-                >
-                    Want to collaborate or talk security & tech?<br />
-                    Feel free to reach out.
-                </motion.p>
-
-                <motion.div
-                    className="contact-links"
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={isInView ? { opacity: 1, y: 0 } : {}}
-                    transition={{ duration: 0.6, delay: 0.4 }}
-                >
-                    {socialLinks.map((link, index) => (
-                        <motion.a
-                            key={link.name}
-                            href={link.href}
-                            className="contact-btn"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            whileHover={{ scale: 1.05, y: -5 }}
-                            whileTap={{ scale: 0.95 }}
-                            initial={{ opacity: 0, y: 20 }}
+                <div style={{ 
+                    padding: '1.5rem', 
+                    background: 'rgba(255,255,255,0.02)', 
+                    borderRadius: '3rem', 
+                    border: '1px solid rgba(255,255,255,0.05)' 
+                }}>
+                    <div style={{ 
+                        padding: '6rem 4rem', 
+                        background: 'var(--bg-color)', 
+                        borderRadius: 'calc(3rem - 0.5rem)',
+                        border: '1px solid rgba(255,255,255,0.05)',
+                        textAlign: 'center'
+                    }}>
+                        <motion.div
+                            ref={ref}
+                            initial={{ opacity: 0, y: 50 }}
                             animate={isInView ? { opacity: 1, y: 0 } : {}}
-                            transition={{ delay: 0.5 + index * 0.1 }}
-                            style={{ '--btn-color': link.color }}
+                            transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
                         >
-                            <link.icon />
-                            <span>{link.name}</span>
-                        </motion.a>
-                    ))}
-                </motion.div>
+                            <span className="section-label" style={{ color: 'var(--text-muted)' }}>Transmission_End</span>
+                            <h2 className="section-title" style={{ fontSize: 'clamp(3rem, 10vw, 8rem)', marginBottom: '4rem', letterSpacing: '-0.04em' }}>
+                                INIT_NEW_<span className="text-gradient">PROJECT</span>
+                            </h2>
+                            
+                            <Magnetic>
+                                <motion.a 
+                                    href="mailto:sgowtham28122004@gmail.com"
+                                    style={{ 
+                                        fontSize: 'clamp(1rem, 5vw, 4rem)', 
+                                        fontFamily: 'var(--font-display)', 
+                                        fontWeight: 900,
+                                        color: 'white',
+                                        textDecoration: 'none',
+                                        display: 'inline-block',
+                                        marginBottom: '6rem',
+                                        letterSpacing: '-0.02em'
+                                    }}
+                                >
+                                    sgowtham28122004@gmail.com
+                                </motion.a>
+                            </Magnetic>
 
-                <motion.div
-                    className="footer"
-                    initial={{ opacity: 0 }}
-                    animate={isInView ? { opacity: 1 } : {}}
-                    transition={{ duration: 0.6, delay: 0.8 }}
-                >
-                    <p>Built with ❤️ by Gowtham © {new Date().getFullYear()}</p>
-                </motion.div>
+                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingTop: '4rem', borderTop: '1px solid rgba(255,255,255,0.05)' }}>
+                                <div style={{ display: 'flex', gap: '3rem' }}>
+                                    <Magnetic>
+                                        <a href="https://github.com/whoamikiddie" target="_blank" rel="noreferrer" className="btn" style={{ border: 'none', padding: '0', fontSize: '0.875rem', fontWeight: 600 }}>
+                                            GITHUB_
+                                        </a>
+                                    </Magnetic>
+                                    <Magnetic>
+                                        <a href="https://www.linkedin.com/in/gowtham-s-b79478275" target="_blank" rel="noreferrer" className="btn" style={{ border: 'none', padding: '0', fontSize: '0.875rem', fontWeight: 600 }}>
+                                            LINKEDIN_
+                                        </a>
+                                    </Magnetic>
+                                </div>
+                                <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.7rem', color: 'var(--text-muted)', letterSpacing: '0.1em' }}>
+                                    [ DESIGNED_BY_VANGUARD ]
+                                </p>
+                            </div>
+                        </motion.div>
+                    </div>
+                </div>
             </div>
         </section>
     );

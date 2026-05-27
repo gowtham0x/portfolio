@@ -1,18 +1,8 @@
 import { motion } from 'framer-motion';
-import { FaDownload, FaArrowRight } from 'react-icons/fa';
-import { useEffect, useState } from 'react';
+import { FaArrowRight } from 'react-icons/fa';
+import Magnetic from './Magnetic';
 
 const Hero = () => {
-    const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-
-    useEffect(() => {
-        const handleMouseMove = (e) => {
-            setMousePosition({ x: e.clientX, y: e.clientY });
-        };
-        window.addEventListener('mousemove', handleMouseMove);
-        return () => window.removeEventListener('mousemove', handleMouseMove);
-    }, []);
-
     const scrollToProjects = () => {
         const element = document.getElementById('projects');
         if (element) {
@@ -20,130 +10,101 @@ const Hero = () => {
         }
     };
 
-    const roles = ['Cybersecurity Engineer', 'Penetration Tester', 'Security Researcher'];
-    const [currentRole, setCurrentRole] = useState(0);
+    const containerVariants = {
+        hidden: { opacity: 0 },
+        visible: {
+            opacity: 1,
+            transition: {
+                staggerChildren: 0.1,
+                delayChildren: 0.5
+            }
+        }
+    };
 
-    useEffect(() => {
-        const interval = setInterval(() => {
-            setCurrentRole((prev) => (prev + 1) % roles.length);
-        }, 3000);
-        return () => clearInterval(interval);
-    }, []);
+    const itemVariants = {
+        hidden: { opacity: 0, y: 60, filter: 'blur(10px)' },
+        visible: { 
+            opacity: 1, 
+            y: 0, 
+            filter: 'blur(0px)',
+            transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1] }
+        }
+    };
 
     return (
-        <section id="hero" className="hero-section">
-            {/* Cursor Glow Effect */}
-            <div
-                className="cursor-glow"
-                style={{
-                    left: mousePosition.x,
-                    top: mousePosition.y
-                }}
-            />
-
-            {/* Grid Background */}
-            <div className="hero-grid"></div>
-
-            {/* Floating Particles */}
-            <div className="particles">
-                {[...Array(20)].map((_, i) => (
-                    <div key={i} className="particle" style={{
-                        '--delay': `${i * 0.5}s`,
-                        '--x': `${Math.random() * 100}%`,
-                        '--duration': `${15 + Math.random() * 10}s`
-                    }}></div>
-                ))}
-            </div>
-
-            <div className="hero-content">
-                <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6 }}
-                    className="hero-badge"
+        <section id="hero" className="section" style={{ minHeight: '100dvh' }}>
+            <div className="container">
+                <motion.div 
+                    className="hero-layout"
+                    variants={containerVariants}
+                    initial="hidden"
+                    animate="visible"
+                    style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}
                 >
-                    <span className="status-dot"></span>
-                    Available for opportunities
-                </motion.div>
+                    <motion.div variants={itemVariants}>
+                         <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+                            <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: 'var(--accent-color)', boxShadow: '0 0 10px var(--accent-color)' }} />
+                            <span className="section-label" style={{ margin: 0 }}>Protocol / 001 - Active</span>
+                         </div>
+                    </motion.div>
+                    
+                    <motion.h1 
+                        className="section-title" 
+                        variants={itemVariants}
+                        style={{ fontSize: 'clamp(4rem, 15vw, 12rem)', lineHeight: 0.8, letterSpacing: '-0.06em' }}
+                    >
+                        <span className="text-gradient">GOWTHAM</span>
+                        <br />
+                        <span style={{ WebkitTextStroke: '1px rgba(255,255,255,0.1)', color: 'transparent' }}>
+                            SECURITY
+                        </span>
+                    </motion.h1>
 
-                <motion.h1
-                    className="hero-title"
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: 0.1 }}
-                >
-                    <span className="hero-greeting">Hi, I'm</span>
-                    <span className="hero-name glitch" data-text="Gowtham">Gowtham</span>
-                </motion.h1>
+                    <motion.div variants={itemVariants} style={{ maxWidth: '600px', marginLeft: 'auto', marginRight: '10%' }}>
+                        <p className="hero-bio" style={{ fontSize: '1.5rem', color: 'var(--text-secondary)', lineHeight: 1.4, fontWeight: 300 }}>
+                            Architecting <span style={{ color: 'white', fontWeight: 500 }}>Unbreakable</span> Systems. 
+                            Specialized in automated threat detection and deep-kernel exploitation.
+                        </p>
+                    </motion.div>
 
-                <motion.div
-                    className="hero-role-wrapper"
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: 0.2 }}
-                >
-                    <span className="hero-role-prefix">&gt; </span>
-                    <span className="hero-role typed-text">
-                        {roles[currentRole]}
-                        <span className="cursor-blink">_</span>
-                    </span>
-                </motion.div>
-
-                <motion.p
-                    className="hero-bio"
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: 0.3 }}
-                >
-                    Building security tools and hunting vulnerabilities.
-                    Passionate about ethical hacking, automation, and building
-                    systems that help protect digital infrastructure.
-                </motion.p>
-
-                <motion.div
-                    className="hero-buttons"
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: 0.4 }}
-                >
-                    <button className="btn btn-primary" onClick={scrollToProjects}>
-                        <span>View Projects</span>
-                        <FaArrowRight />
-                    </button>
-                    <a href={`${import.meta.env.BASE_URL}Gowtham.pdf`} className="btn btn-secondary" download>
-                        <span>Download Resume</span>
-                        <FaDownload />
-                    </a>
-                </motion.div>
-
-                {/* Tech Stack Preview */}
-                <motion.div
-                    className="hero-tech-stack"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ duration: 0.6, delay: 0.5 }}
-                >
-                    <span className="tech-label">Tech Stack:</span>
-                    <div className="tech-icons">
-                        <span className="tech-item">Python</span>
-                        <span className="tech-item">Go</span>
-                        <span className="tech-item">Bash</span>
-                        <span className="tech-item">Linux</span>
-                    </div>
+                    <motion.div className="hero-buttons" variants={itemVariants} style={{ display: 'flex', gap: '2rem', marginTop: '2rem' }}>
+                        <Magnetic>
+                            <button 
+                                className="btn btn-primary" 
+                                onClick={scrollToProjects}
+                                style={{ 
+                                    padding: '0.75rem 0.75rem 0.75rem 2.5rem', 
+                                    borderRadius: '100px', 
+                                    display: 'flex', 
+                                    alignItems: 'center', 
+                                    gap: '1.5rem' 
+                                }}
+                            >
+                                <span style={{ fontWeight: 600, letterSpacing: '0.05em' }}>EXPLORE_ARSENAL</span>
+                                <div style={{ 
+                                    width: '3.5rem', 
+                                    height: '3.5rem', 
+                                    borderRadius: '50%', 
+                                    background: 'white', 
+                                    color: 'black', 
+                                    display: 'flex', 
+                                    alignItems: 'center', 
+                                    justifyContent: 'center',
+                                    fontSize: '1.25rem'
+                                }}>
+                                    <FaArrowRight />
+                                </div>
+                            </button>
+                        </Magnetic>
+                        
+                        <Magnetic>
+                            <a href="#about" className="btn" style={{ borderRadius: '100px', padding: '1.5rem 2.5rem' }}>
+                                CORE_IDENTITY
+                            </a>
+                        </Magnetic>
+                    </motion.div>
                 </motion.div>
             </div>
-
-            <motion.div
-                className="scroll-indicator"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 1, duration: 0.5 }}
-            >
-                <span className="scroll-text">Scroll</span>
-                <div className="scroll-line">
-                    <div className="scroll-dot"></div>
-                </div>
-            </motion.div>
         </section>
     );
 };
