@@ -53,12 +53,83 @@
       ]
     }
   </script>
-  <script type="module" crossorigin src="/portfolio/assets/index-CuNET6Qz.js"></script>
-  <link rel="stylesheet" crossorigin href="/portfolio/assets/index-YSeVN2Sv.css">
+  <script type="module" crossorigin src="/portfolio/assets/index-DpR79eaX.js"></script>
+  <link rel="stylesheet" crossorigin href="/portfolio/assets/index-DVnrN16U.css">
 </head>
 
 <body>
-  <div id="root"></div>
+  <div id="root">
+    <!-- Static Fallback for SEO & Crawlers -->
+    <header>
+      <nav>
+        <ul>
+          <li><a href="#hero">Index</a></li>
+          <li><a href="#projects">Works</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <section id="hero">
+        <h1>Gowtham | Cybersecurity Engineer</h1>
+        <p>Architecting Unbreakable Systems. Specialized in automated threat detection and deep-kernel exploitation.</p>
+      </section>
+
+      <section id="about">
+        <h2>Digital Architect of Defense</h2>
+        <p>I specialize in dissecting complex systems to uncover hidden vulnerabilities. My approach combines engineering precision with a hacker's intuition. Currently focused on automating security workflows and building tools that protect digital infrastructure at scale.</p>
+        <ul>
+          <li>Penetration Testing</li>
+          <li>Security Automation</li>
+          <li>Bug Bounty Hunting</li>
+          <li>Tool Development</li>
+        </ul>
+      </section>
+
+      <section id="skills">
+        <h2>Technical Arsenal</h2>
+        <ul>
+          <li>Advanced Exploitation: Deep dive into kernel vulnerabilities and custom exploit development.</li>
+          <li>Cloud Security: Securing distributed microservices and containerized environments at scale.</li>
+          <li>Languages: Python, Go, Rust</li>
+          <li>Infrastructure: Linux, Docker, Kubernetes</li>
+          <li>Frontend: React</li>
+        </ul>
+      </section>
+
+      <section id="projects">
+        <h2>Case Studies</h2>
+        <article>
+          <h3>Echovulnx</h3>
+          <p>A bug bounty and penetration testing tool designed to automate vulnerability discovery and assist ethical hackers in identifying security flaws efficiently.</p>
+          <p>Tech: Python, Security Automation, CLI</p>
+        </article>
+        <article>
+          <h3>Vulnx</h3>
+          <p>A fast and lightweight penetration testing tool written in Golang, focused on speed, accuracy, and automation for modern security testing.</p>
+          <p>Tech: Golang, Networking, Automation</p>
+        </article>
+      </section>
+
+      <section id="contact">
+        <h2>Start a Project</h2>
+        <p>Email: sgowtham28122004@gmail.com</p>
+        <ul>
+          <li><a href="https://github.com/gowtham0x">GitHub</a></li>
+          <li><a href="https://www.linkedin.com/in/gowtham-s-b79478275">LinkedIn</a></li>
+        </ul>
+      </section>
+    </main>
+
+    <style>
+      /* Basic styles for the fallback to prevent visual noise during load */
+      #root:not(:empty) > :not(style) {
+        display: none;
+      }
+    </style>
+  </div>
 </body>
 
 </html>
