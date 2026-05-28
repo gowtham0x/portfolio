@@ -1,0 +1,19 @@
+index.html
+  s_1e827717988750::t_c8a9b86deb6801 59-130
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.2",
+  "base_commit_sha": "b9d67c6c77c8304400fd8025f2022a20a60604f6",
+  "prompts": {},
+  "sessions": {
+    "s_1e827717988750": {
+      "agent_id": {
+        "tool": "gemini",
+        "id": "52e77065-8bc0-4aae-b44f-293344f205ef",
+        "model": "gemini-3-flash-preview"
+      },
+      "human_author": "whoamikiddie <sgowtham28122004@gmail.com>"
+    }
+  }
+}
