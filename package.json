@@ -5,8 +5,11 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "build:export": "GITHUB_PAGES=true next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "predeploy": "npm run build:export",
+    "deploy": "gh-pages -d out --dotfiles --nojekyll"
   },
   "dependencies": {
     "gsap": "^3.15.0",
@@ -23,6 +26,7 @@
     "@types/three": "^0.185.4",
     "eslint": "^9",
     "eslint-config-next": "16.3.0",
+    "gh-pages": "^6.3.0",
     "typescript": "^5"
   }
 }
