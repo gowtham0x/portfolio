@@ -1,4 +1,4 @@
-User-agent: *
+User-Agent: *
 Allow: /
 
-Sitemap: https://gowtham0x.github.io/portfolio/sitemap.xml
+Sitemap: http://localhost:3000/sitemap.xml
