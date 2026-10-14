@@ -13,13 +13,15 @@ import { gsap, EASE, prefersReducedMotion } from "@/lib/gsap";
 import Button from "@/components/ui/Button";
 import styles from "./Connect.module.css";
 import { useLang } from "@/lib/i18n";
+import { asset } from "@/lib/site";
+import gojoImg from "@/public/images/connect/gojo.jpeg";
 
 /* Gowtham's own photographs, in the order he supplied them (IMAGE 1–5).
    `focus` is object-position only: the frames are portrait and two of the
    photos are landscape, so this keeps him in frame — the images are cropped,
    never scaled non-uniformly, and their colour is left untouched. */
 const PANELS = [
-  { src: "/images/connect/gojo.jpeg", focus: "center 20%", rotate: 0, z: 0, y: 0 },
+  { src: gojoImg.src || "/images/connect/gojo.jpeg", focus: "center 20%", rotate: 0, z: 0, y: 0 },
 ];
 
 /* Official brand marks, inlined so they inherit size and need no requests.
@@ -166,7 +168,7 @@ export default function Connect() {
             <div className={`${styles.panelInner} ${styles.hasPhoto}`}>
               <img
                 className={styles.photo}
-                src={p.src}
+                src={asset(p.src)}
                 alt=""
                 style={{ objectPosition: p.focus }}
                 loading="lazy"
