@@ -119,10 +119,13 @@
 /* Toji/Gojo treatment — ink art on white: multiply erases the white
    background so only the dark linework floats on the page */
 .gojoPanel .panelInner {
+  width: 280px;
+  height: 380px;
   background: transparent;
   border: none;
   box-shadow: none;
   overflow: visible;
+  border-radius: 0 !important;
 }
 .gojoPanel .photo {
   object-fit: contain;
@@ -272,37 +275,47 @@
 
 /* ---------- responsive ---------- */
 @media (max-width: 1080px) {
-  .panelInner {
-    width: 172px;
-    height: 240px;
-  }
-  .panel:nth-child(1) .panelInner,
-  .panel:nth-child(5) .panelInner {
-    height: 268px;
+  .gojoPanel .panelInner {
+    width: 260px;
+    height: 350px;
   }
 }
-/* Promoted from 820px: five 172px panels plus four 26px gaps need ~964px, so
-   between 821 and 963px the outer two were cropped by the viewport edge. The
-   arc drops to three panels for the whole mobile range instead. */
+
 @media (max-width: 1000px) {
   .connect {
-    padding-top: 100px;
+    padding-top: 80px;
   }
   .arc {
     gap: 16px;
-    margin-top: 56px;
+    margin-top: 40px;
   }
-  .panel:nth-child(1),
-  .panel:nth-child(5) {
-    display: none;
+  .panel {
+    display: block !important;
   }
-  .panelInner {
-    width: min(30vw, 168px);
-    height: 220px;
+  .gojoPanel .panelInner {
+    width: min(80vw, 260px);
+    height: 340px;
   }
   .footer {
     flex-direction: column;
     text-align: center;
     padding: 24px;
+  }
+}
+
+@media (max-width: 600px) {
+  .connect {
+    padding-top: 60px;
+  }
+  .arc {
+    margin-top: 32px;
+  }
+  .gojoPanel .panelInner {
+    width: min(86vw, 240px);
+    height: 320px;
+  }
+  .socials {
+    margin-top: 44px;
+    gap: 10px;
   }
 }
