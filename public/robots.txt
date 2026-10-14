@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://gowtham0x.github.io/portfolio/sitemap.xml
