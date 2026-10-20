@@ -37,9 +37,9 @@ const SCROLL_TO_Z = 0.05;
 const CAMERA_CHASE = 0.1;
 const FADE_IN = 1;
 
-const BACKGROUND = "#0a0a0c";
-const LINE_COLOR = "#9a9aa0";
-const COLORS = ["#FF6A00", "#AB54F7", "#FF2E0F", "#0072E3", "#00AA3C", "#FFB200"];
+const BACKGROUND = "#f0efed"; /* light interior — letter windows glow on dark surround */
+const LINE_COLOR = "#c8c6c2"; /* visible grid lines on light bg */
+const COLORS = ["#FF6A00", "#AB54F7", "#c0392b", "#0072E3", "#00AA3C", "#FFB200"];
 
 const IMAGES = [
   "https://imagedelivery.net/IEUjvl3YUlxY-MrTpOAWDQ/f8b3688c-11d0-425c-0b6f-66f133322c00/w=800",
@@ -103,7 +103,7 @@ export default function TunnelIntro({ text = "GOWTHAM" }: { text?: string }) {
     renderer.setPixelRatio(Math.min(DPR_CAP, window.devicePixelRatio || 1));
 
     const bgColor = new THREE.Color(BACKGROUND);
-    const white = new THREE.Color("#ffffff");
+    const white = new THREE.Color("#0e0e10"); /* lerps to page bg, not white */
 
     const scene = new THREE.Scene();
     scene.background = bgColor.clone();
@@ -335,6 +335,7 @@ export default function TunnelIntro({ text = "GOWTHAM" }: { text?: string }) {
     let stageShown = 1;
 
     const onPointerMove = (e: PointerEvent) => {
+      if (e.pointerType === "touch" || compact) return;
       const r = frame.getBoundingClientRect();
       mx = ((e.clientX - r.left) / r.width - 0.5) * 2;
       my = ((e.clientY - r.top) / r.height - 0.5) * 2;

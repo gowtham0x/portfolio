@@ -177,22 +177,16 @@ export default function Experience() {
         el.removeEventListener("pointermove", onMove);
         handlers.forEach(([elm, h]) => elm.removeEventListener("click", h));
         el.classList.remove(styles.deckMode);
+        boards.forEach((b) => {
+          b.style.visibility = "";
+          b.style.transform = "";
+          b.style.opacity = "";
+          b.style.zIndex = "";
+        });
       };
     });
 
-    mm.add("(max-width: 1000px), (prefers-reduced-motion: reduce)", () => {
-      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-      gsap.utils.toArray<HTMLElement>(`.${styles.board}`).forEach((b) => {
-        gsap.from(b, {
-          y: 40,
-          autoAlpha: 0,
-          duration: 0.85,
-          ease: EASE.outExpo,
-          immediateRender: false,
-          scrollTrigger: { trigger: b, start: "top 88%" },
-        });
-      });
-    });
+    /* Touch / mobile: boards render in clean CSS vertical flow without JS hiding them */
 
     return () => mm.revert();
   }, []);

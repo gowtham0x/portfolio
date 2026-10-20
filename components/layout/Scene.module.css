@@ -42,7 +42,7 @@
    the drift wall) opt out with `.keepFrame` and keep the cinematic hold. */
 @media (max-width: 1000px) {
   .hold {
-    position: static;
+    position: relative;
     height: auto;
     min-height: auto;
     overflow: visible;

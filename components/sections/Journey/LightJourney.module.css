@@ -234,7 +234,7 @@
 .whiteout {
   position: absolute;
   inset: 0;
-  background: #fff;
+  background: #0e0e10;
   opacity: 0;
   pointer-events: none;
 }

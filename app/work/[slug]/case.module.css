@@ -2,7 +2,7 @@
 
 .page {
   min-height: 100svh;
-  background: #fff;
+  background: var(--bg);
 }
 
 /* slim top bar */
@@ -14,7 +14,7 @@
   align-items: center;
   justify-content: space-between;
   padding: 16px 44px;
-  background: rgba(255, 255, 255, 0.88);
+  background: rgba(14, 14, 16, 0.92);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--line);
@@ -191,7 +191,7 @@
   display: flex;
   gap: 22px;
   padding: 26px 28px;
-  background: #fcfcfc;
+  background: #1a1a1d;
   border: 1px solid var(--line);
   border-radius: 18px;
 }

@@ -87,7 +87,13 @@ export default function Work() {
         scrollTrigger: { trigger: el, start: "top 70%" },
       });
 
-      return () => st.kill();
+      return () => {
+        st.kill();
+        cards.forEach((card) => {
+          (card as HTMLElement).style.visibility = "";
+          gsap.set(card, { clearProps: "all" });
+        });
+      };
     });
 
     /* Touch & reduced motion: the snap row needs no JS. The reveal tween that

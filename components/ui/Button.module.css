@@ -111,26 +111,26 @@
   --btn-bg: var(--accent);
   --btn-fg: #fff;
   --btn-fill: var(--ink);
-  --btn-fill-fg: #fff;
+  --btn-fill-fg: var(--bg);
 }
 .dark {
   --btn-bg: var(--ink);
-  --btn-fg: #fff;
+  --btn-fg: var(--bg);
   --btn-fill: var(--accent);
   --btn-fill-fg: #fff;
 }
 .ghost {
-  --btn-bg: #fff;
+  --btn-bg: transparent;
   --btn-fg: var(--ink);
   --btn-fill: var(--ink);
-  --btn-fill-fg: #fff;
-  border: 1.5px solid #e4e4e6;
+  --btn-fill-fg: var(--bg);
+  border: 1.5px solid rgba(239, 239, 237, 0.25);
 }
 .ghost:hover {
   border-color: var(--ink);
 }
 .ghost .arrow {
-  background: rgba(20, 20, 20, 0.07);
+  background: rgba(239, 239, 237, 0.1);
 }
 
 /* ---------- sizes ---------- */

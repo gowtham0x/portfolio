@@ -2,7 +2,7 @@
 
 .about {
   position: relative;
-  background: #fff;
+  background: var(--bg);
 }
 
 .wrap {
@@ -95,9 +95,9 @@
   gap: 30px;
 }
 .sideCard {
-  background: #fff;
+  background: var(--bg);
   border-radius: var(--radius);
-  border: 1px solid rgba(20, 20, 20, 0.04);
+  border: 1px solid rgba(0, 0, 0, 0.3);
   box-shadow: var(--shadow);
   will-change: transform;
 }
@@ -133,7 +133,7 @@
   font-size: 16px;
   font-weight: 600;
   padding: 11px 0;
-  border-bottom: 1px solid #f3f3f4;
+  border-bottom: 1px solid #eaeaed;
 }
 .philoCard li:last-child {
   border: none;

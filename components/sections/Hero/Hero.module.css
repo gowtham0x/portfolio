@@ -5,13 +5,14 @@
 
 .hero {
   position: relative;
-  background: #fff; /* opaque, so the layer above covers it cleanly */
-  height: auto;
+  background: var(--bg); /* opaque, so the layer above covers it cleanly */
+  height: 100%;
   min-height: 100svh;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   overflow: hidden;
-  padding-top: 96px;
+  padding-top: clamp(64px, 8vh, 88px);
 }
 
 /* ---------- ambient composition ---------- */
@@ -31,12 +32,12 @@
 .glowL {
   left: -160px;
   top: 18%;
-  background: radial-gradient(circle, rgba(255, 46, 15, 0.055) 0%, rgba(255, 46, 15, 0) 68%);
+  background: radial-gradient(circle, rgba(224, 36, 56, 0.05) 0%, rgba(224, 36, 56, 0) 68%);
 }
 .glowR {
   right: -140px;
   top: 40%;
-  background: radial-gradient(circle, rgba(20, 20, 20, 0.045) 0%, rgba(20, 20, 20, 0) 66%);
+  background: radial-gradient(circle, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0) 66%);
 }
 .ring {
   position: absolute;
@@ -44,7 +45,7 @@
   bottom: 6%;
   width: 340px;
   height: 340px;
-  border: 1.2px solid #ededef;
+  border: 1.2px solid #e7e8eb;
   border-radius: 50%;
 }
 .plusA,
@@ -52,7 +53,7 @@
   position: absolute;
   font-size: 18px;
   font-weight: 600;
-  color: #d8d8db;
+  color: #d4d4d8;
   line-height: 1;
 }
 .plusA {
@@ -66,21 +67,21 @@
 .particle {
   position: absolute;
   border-radius: 50%;
-  background: #dcdcdf;
+  background: #d6d6da;
 }
 .particleAccent {
-  background: rgba(255, 46, 15, 0.5);
+  background: rgba(224, 36, 56, 0.55);
 }
 
 /* ---------- Head ---------- */
 .head {
   text-align: center;
   z-index: 5;
-  padding: 20px 24px 0;
+  padding: clamp(4px, 1vh, 14px) 24px 0;
 }
 /* plain eyebrow — no pill, no box; the headline owns the stage */
 .kicker {
-  font-size: 12px;
+  font-size: 11.5px;
   font-weight: 700;
   letter-spacing: 0.22em;
   text-transform: uppercase;
@@ -88,11 +89,11 @@
 }
 
 .h1 {
-  margin-top: 22px;
+  margin-top: clamp(8px, 1.4vh, 16px);
   font-weight: 900;
-  font-size: clamp(46px, 6.6vw, 100px);
+  font-size: clamp(36px, 4.4vw, 68px);
   letter-spacing: -0.035em;
-  line-height: 1.02;
+  line-height: 1.04;
 }
 .row {
   display: block;
@@ -108,18 +109,18 @@
 }
 
 .sub {
-  margin: 22px auto 0;
+  margin: clamp(10px, 1.4vh, 16px) auto 0;
   max-width: 560px;
-  font-size: 15.5px;
-  line-height: 1.65;
+  font-size: clamp(13.5px, 1.05vw, 15px);
+  line-height: 1.55;
   color: var(--ink-2);
 }
 
 .ctas {
   display: flex;
-  gap: 10px;
+  gap: 12px;
   justify-content: center;
-  margin-top: 26px;
+  margin-top: clamp(12px, 1.8vh, 20px);
 }
 .play {
   font-size: 9px;
@@ -130,12 +131,12 @@
 .stageRow {
   flex: 1;
   display: grid;
-  grid-template-columns: 1fr minmax(420px, 600px) 1fr;
-  align-items: end;
-  max-width: 1400px;
+  grid-template-columns: 1fr minmax(360px, 540px) 1fr;
+  align-items: flex-end;
+  max-width: 1440px;
   width: 100%;
   margin: 0 auto;
-  padding: 30px 44px 0;
+  padding: clamp(6px, 1.2vh, 16px) clamp(20px, 3vw, 44px) 0;
   min-height: 0;
   z-index: 1;
 }
@@ -143,48 +144,68 @@
 .side {
   display: flex;
   flex-direction: column;
-  gap: 24px;
-  padding-bottom: 76px;
+  gap: clamp(12px, 1.8vh, 20px);
+  padding-bottom: clamp(24px, 4.5vh, 56px);
   z-index: 5;
 }
 .sideL {
   align-items: flex-end;
-  padding-right: 26px;
+  padding-right: clamp(12px, 2vw, 24px);
 }
 .sideR {
   align-items: flex-start;
-  padding-left: 26px;
+  padding-left: clamp(12px, 2vw, 24px);
 }
 .statCard {
-  background: #fff;
-  border-radius: 16px;
-  border: 1px solid rgba(20, 20, 20, 0.05);
-  box-shadow: 0 18px 44px -14px rgba(20, 20, 20, 0.1);
-  padding: 18px 22px;
-  width: 196px;
+  background: rgba(22, 22, 24, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 14px;
+  border: 1px solid var(--line);
+  box-shadow: 0 16px 36px -12px rgba(0, 0, 0, 0.6);
+  padding: clamp(13px, 1.5vh, 17px) clamp(15px, 1.3vw, 20px);
+  width: clamp(165px, 14vw, 204px);
   will-change: transform;
+  transition: border-color 0.3s ease, transform 0.3s var(--ease-out-expo), box-shadow 0.3s ease;
+}
+.statCard:hover {
+  border-color: rgba(224, 36, 56, 0.45);
+  box-shadow: 0 20px 48px -12px rgba(224, 36, 56, 0.16), 0 8px 24px rgba(0, 0, 0, 0.7);
+  transform: translateY(-4px) scale(1.02);
 }
 .sideL .statCard:nth-child(1) {
-  transform: rotate(-4deg);
+  transform: rotate(-3deg);
+}
+.sideL .statCard:nth-child(1):hover {
+  transform: rotate(-2deg) translateY(-4px) scale(1.02);
 }
 .sideL .statCard:nth-child(2) {
-  transform: rotate(2.5deg) translateX(-18px);
+  transform: rotate(2deg) translateX(-10px);
+}
+.sideL .statCard:nth-child(2):hover {
+  transform: rotate(1deg) translateX(-10px) translateY(-4px) scale(1.02);
 }
 .sideR .statCard:nth-child(1) {
-  transform: rotate(4deg);
+  transform: rotate(3deg);
+}
+.sideR .statCard:nth-child(1):hover {
+  transform: rotate(2deg) translateY(-4px) scale(1.02);
 }
 .sideR .statCard:nth-child(2) {
-  transform: rotate(-2.5deg) translateX(18px);
+  transform: rotate(-2deg) translateX(10px);
+}
+.sideR .statCard:nth-child(2):hover {
+  transform: rotate(-1deg) translateX(10px) translateY(-4px) scale(1.02);
 }
 .statIcon {
-  width: 18px;
-  height: 18px;
+  width: 20px;
+  height: 20px;
   object-fit: contain;
-  margin-bottom: 9px;
+  margin-bottom: 7px;
 }
 .statNum {
   display: flex;
-  font-size: 30px;
+  font-size: clamp(24px, 2.2vw, 28px);
   font-weight: 900;
   letter-spacing: -0.02em;
   line-height: 1;
@@ -194,11 +215,11 @@
   color: var(--accent);
 }
 .statLabel {
-  font-size: 12px;
+  font-size: 11.5px;
   font-weight: 600;
-  color: var(--ink-3);
-  margin-top: 6px;
-  line-height: 1.35;
+  color: var(--ink-2);
+  margin-top: 5px;
+  line-height: 1.3;
 }
 
 /* ---------- Stage: arch + portrait (the focal point) ---------- */
@@ -206,42 +227,141 @@
   position: relative;
   z-index: 3;
   display: flex;
-  justify-content: center;
-  align-items: flex-end;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
   height: 100%;
-  min-height: 480px;
-  padding-bottom: 24px;
+  min-height: 0;
+  padding-bottom: 0;
 }
 .glowBase {
   position: absolute;
-  bottom: -40px;
+  bottom: 8px;
   left: 50%;
   transform: translateX(-50%);
-  width: 520px;
-  height: 520px;
-  border-radius: 50%;
+  width: clamp(280px, 34vw, 480px);
+  height: clamp(180px, 25vh, 300px);
   background: radial-gradient(
-    ellipse 70% 55% at 50% 80%,
-    rgba(255, 46, 15, 0.18) 0%,
-    rgba(255, 46, 15, 0.07) 45%,
-    transparent 75%
+    ellipse at 50% 90%,
+    rgba(224, 36, 56, 0.18) 0%,
+    rgba(224, 36, 56, 0.08) 38%,
+    rgba(224, 36, 56, 0.015) 65%,
+    transparent 78%
   );
+  filter: blur(42px);
   pointer-events: none;
   z-index: 1;
+}
+
+.portraitWrap {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  max-width: 100%;
+  overflow: visible;
+  will-change: transform;
 }
 
 .portrait {
   position: relative;
   z-index: 3;
   width: auto;
-  height: min(72vh, 620px);
-  max-width: 98%;
+  height: clamp(340px, 50vh, 520px);
+  max-width: 100%;
   object-fit: contain;
   object-position: bottom center;
-  mix-blend-mode: multiply;
-  filter: drop-shadow(0 20px 36px rgba(255, 46, 15, 0.1)) drop-shadow(0 4px 16px rgba(20, 20, 20, 0.14));
+  filter: drop-shadow(0 20px 48px rgba(0, 0, 0, 0.85));
   will-change: transform;
 }
+
+/* ---------- Katana Specular Glint (Hairline shine traveling along blade edge every 7s) ---------- */
+.katanaSvg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 4;
+}
+
+/* Crimson specular fringe along the blade */
+.glintAura {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 4.5;
+  stroke-linecap: round;
+  stroke-dasharray: 45 200;
+  stroke-dashoffset: 45;
+  opacity: 0;
+  animation: katanaSweep 7s cubic-bezier(0.25, 0.1, 0.25, 1) infinite;
+}
+
+/* Crisp metallic white hairline core */
+.glintCore {
+  fill: none;
+  stroke: #ffffff;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-dasharray: 45 200;
+  stroke-dashoffset: 45;
+  opacity: 0;
+  animation: katanaSweep 7s cubic-bezier(0.25, 0.1, 0.25, 1) infinite;
+}
+
+@keyframes katanaSweep {
+  0% {
+    stroke-dashoffset: 45;
+    opacity: 0;
+  }
+  1.5% {
+    opacity: 0.95;
+  }
+  14% {
+    opacity: 0.95;
+  }
+  16% {
+    stroke-dashoffset: -200;
+    opacity: 0;
+  }
+  16.01%, 100% {
+    stroke-dashoffset: 45;
+    opacity: 0;
+  }
+}
+
+/* Micro diamond specular glint at blade tip */
+.tipGlint {
+  fill: #ffffff;
+  transform-origin: 159px 664px;
+  opacity: 0;
+  filter: drop-shadow(0 0 3px #ffffff) drop-shadow(0 0 6px var(--accent));
+  animation: tipPing 7s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+}
+
+@keyframes tipPing {
+  0%, 13.5% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  14.5% {
+    transform: scale(1.15);
+    opacity: 1;
+  }
+  16.5% {
+    transform: scale(0.2);
+    opacity: 0;
+  }
+  16.51%, 100% {
+    transform: scale(0);
+    opacity: 0;
+  }
+}
+
+
+
+
 
 /* ---------- chip rails — larger, legible ---------- */
 .chipLayer {
@@ -257,17 +377,17 @@
   justify-content: center;
   width: 62px;
   height: 62px;
-  background: #fff;
-  border: 1px solid rgba(20, 20, 20, 0.05);
+  background: var(--bg);
+  border: 1px solid rgba(0, 0, 0, 0.35);
   border-radius: 18px;
-  box-shadow: 0 14px 34px -8px rgba(20, 20, 20, 0.15);
+  box-shadow: 0 14px 34px -8px rgba(0, 0, 0, 0.15);
   will-change: transform;
   pointer-events: auto;
   transition: scale var(--dur-fast) var(--ease-out-expo), box-shadow var(--dur-fast) ease;
 }
 .chip:hover {
   scale: 1.12;
-  box-shadow: 0 20px 44px -8px rgba(20, 20, 20, 0.23);
+  box-shadow: 0 20px 44px -8px rgba(0, 0, 0, 0.23);
 }
 .chip img {
   width: 34px;
@@ -328,7 +448,7 @@
   align-items: center;
   justify-content: center;
   gap: 10px;
-  padding: 20px 0 26px;
+  padding: clamp(6px, 1vh, 12px) 0 clamp(8px, 1.2vh, 16px);
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.22em;
@@ -354,14 +474,15 @@
 }
 
 /* ============ Responsive ============ */
-@media (max-width: 1180px) {
+@media (max-width: 1000px) {
   .hero {
+    height: auto;
     padding-top: 104px;
-    gap: 34px;
+    gap: 24px;
   }
   .stageRow {
     grid-template-columns: 1fr;
-    gap: 34px;
+    gap: 28px;
     padding: 0 24px;
   }
   .side {
@@ -388,11 +509,14 @@
   .archLine {
     bottom: 0;
   }
+  .portraitWrap {
+    width: 100%;
+    justify-content: center;
+  }
   .portrait {
     height: auto;
-    max-height: 60vh;
-    max-width: min(400px, 84vw);
-    mix-blend-mode: multiply;
+    max-height: 48vh;
+    max-width: min(340px, 82vw);
   }
   .annot,
   .stackLabel,
@@ -425,5 +549,9 @@
   .glow {
     width: 320px;
     height: 320px;
+  }
+  .portrait {
+    max-height: 42vh;
+    max-width: min(290px, 78vw);
   }
 }

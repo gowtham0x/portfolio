@@ -69,6 +69,7 @@ export default function Hero() {
         .from(`.${styles.row}`, { y: 70, autoAlpha: 0, duration: 1.05, stagger: 0.12 }, "-=0.45")
         .from(`.${styles.sub}`, { y: 24, autoAlpha: 0, duration: 0.8 }, "-=0.7")
         .from(`.${styles.ctas} > *`, { y: 18, autoAlpha: 0, duration: 0.6, stagger: 0.08 }, "-=0.55")
+        .from(`.${styles.glowBase}`, { autoAlpha: 0, scale: 0.85, duration: 1.2, ease: "power2.out" }, "-=0.9")
         .from(`.${styles.portrait}`, { y: 110, autoAlpha: 0, duration: 1.15, ease: "power3.out" }, "-=0.75")
         .from(
           `.${styles.statCard}`,
@@ -200,7 +201,7 @@ export default function Hero() {
 
       {/* ---- Stage ---- */}
       <div className={styles.stageRow}>
-        <div className={`${styles.side} ${styles.sideL}`}>
+        <div className={`${styles.side} ${styles.sideL}`} data-depth="0.045">
           {STATS_LEFT.map((s) => (
             <StatCard key={s.key} n={s.n} suffix={s.suffix} icon={s.icon} label={t(s.key)} />
           ))}
@@ -209,19 +210,59 @@ export default function Hero() {
         <div className={styles.stage}>
           <span className={styles.glowBase} aria-hidden="true" />
 
-          <Image
-            className={styles.portrait}
-            src={tojiImg}
-            alt="Gowtham S — Cybersecurity Researcher &amp; Ethical Hacker"
-            width={735}
-            height={872}
-            priority
-            data-depth="0.03"
-          />
+          <div className={styles.portraitWrap} data-depth="0.02">
+            <Image
+              className={styles.portrait}
+              src={tojiImg}
+              alt="Gowtham S — Cybersecurity Researcher &amp; Ethical Hacker"
+              width={735}
+              height={872}
+              priority
+            />
 
+            {/* Subtle Katana Specular Glint (Hairline shine traveling along blade edge every 7s) */}
+            <svg
+              className={styles.katanaSvg}
+              viewBox="0 0 735 872"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+            >
+              <defs>
+                <filter id="katanaSpecularBlur" x="-30%" y="-30%" width="160%" height="160%">
+                  <feGaussianBlur stdDeviation="2" result="blur" />
+                  <feMerge>
+                    <feMergeNode in="blur" />
+                    <feMergeNode in="SourceGraphic" />
+                  </feMerge>
+                </filter>
+              </defs>
+
+              {/* Crimson aura trailing the light */}
+              <path
+                className={styles.glintAura}
+                d="M 266 500 Q 220 580 159 664"
+                pathLength="200"
+              />
+
+              {/* Crisp white metallic core reflection */}
+              <path
+                className={styles.glintCore}
+                d="M 266 500 Q 220 580 159 664"
+                pathLength="200"
+                filter="url(#katanaSpecularBlur)"
+              />
+
+              {/* Micro-specular diamond ping at blade tip */}
+              <path
+                className={styles.tipGlint}
+                d="M 159 658 Q 159 664 165 664 Q 159 664 159 670 Q 159 664 153 664 Q 159 664 159 658 Z"
+              />
+            </svg>
+          </div>
         </div>
 
-        <div className={`${styles.side} ${styles.sideR}`}>
+        <div className={`${styles.side} ${styles.sideR}`} data-depth="0.045">
           {STATS_RIGHT.map((s) => (
             <StatCard key={s.key} n={s.n} suffix={s.suffix} icon={s.icon} label={t(s.key)} />
           ))}

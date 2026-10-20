@@ -2,13 +2,13 @@
 
 .intro {
   position: relative;
-  background: #fff;
+  background: var(--bg);
 }
 
 .frame {
   position: relative;
   height: 100svh;
-  background: #fff;
+  background: var(--bg);
   overflow: hidden;
 }
 
@@ -88,7 +88,7 @@
   display: block;
   width: min(220px, 30vw);
   height: 1.5px;
-  background: #e8e8ea;
+  background: rgba(239, 239, 237, 0.15);
   border-radius: 2px;
   overflow: hidden;
 }

@@ -9,7 +9,7 @@
   flex-direction: column;
   gap: 18px;
   overflow: hidden;
-  background: #fff;
+  background: var(--bg);
 }
 
 .row {
@@ -45,7 +45,7 @@
 }
 .outlineText {
   color: transparent;
-  -webkit-text-stroke: 1.4px #1f1f22;
+  -webkit-text-stroke: 1.4px rgba(239,239,237,0.35);
 }
 
 .sep {

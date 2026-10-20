@@ -4,7 +4,7 @@
   position: relative;
   width: 100%;
   height: 100%;
-  background: #fff; /* the page stays clean white — only the letters open */
+  background: var(--bg); /* page bg — only the letters open */
   overflow: hidden;
 }
 

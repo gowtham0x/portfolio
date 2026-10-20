@@ -282,26 +282,37 @@ export default function DesignStack() {
 
         {/* orbiting cards — a real list, so screen readers get the full set */}
         <ul className={styles.orbit}>
-          {TOOLS.map((t) => (
-            <li className={styles.card} key={t.name}>
-              <span className={styles.face}>
-                <span className={styles.mark}>
-                  {t.src ? (
-                    <img src={t.src} alt="" aria-hidden="true" />
-                  ) : (
-                    <span
-                      className={styles.mono}
-                      style={{ color: t.color, background: `${t.color}14` }}
-                      aria-hidden="true"
-                    >
-                      {t.mono}
-                    </span>
-                  )}
+          {TOOLS.map((t) => {
+            const Icon = t.icon;
+            return (
+              <li className={styles.card} key={t.name}>
+                <span className={styles.face}>
+                  <span className={styles.mark}>
+                    {Icon ? (
+                      <span
+                        className={styles.iconWrap}
+                        style={{ color: t.color, background: `${t.color}18` }}
+                        aria-hidden="true"
+                      >
+                        <Icon size="100%" />
+                      </span>
+                    ) : t.src ? (
+                      <img src={t.src} alt="" aria-hidden="true" />
+                    ) : (
+                      <span
+                        className={styles.mono}
+                        style={{ color: t.color, background: `${t.color}14` }}
+                        aria-hidden="true"
+                      >
+                        {t.mono}
+                      </span>
+                    )}
+                  </span>
+                  <span className={styles.name}>{t.name}</span>
                 </span>
-                <span className={styles.name}>{t.name}</span>
-              </span>
-            </li>
-          ))}
+              </li>
+            );
+          })}
         </ul>
       </div>
     </section>

@@ -43,7 +43,7 @@ export const ROLES: Role[] = [
     ],
     outcome: "Production-grade red-team framework in Rust with full EDR evasion, C2, and anti-forensics capability",
     skills: ["Rust", "EDR Evasion", "Process Injection", "UAC Bypass", "Anti-Debug", "Direct Syscalls", "ETW Patching", "Windows Internals", "COM Objects", "PEB Manipulation", "Binary Hardening", "C2 Communication"],
-    color: "#CE422B",
+    color: "#E02438",
     fg: "light",
     fr: {
       role: "Développeur d'outils red team (Rust)",

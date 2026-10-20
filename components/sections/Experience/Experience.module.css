@@ -4,7 +4,7 @@
 
 .experience {
   position: relative;
-  background: #fbfbfc;
+  background: var(--bg);
   border-top: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
   overflow: hidden;
@@ -124,7 +124,7 @@
   cursor: pointer;
   will-change: transform, opacity;
   transform-style: preserve-3d;
-  box-shadow: 0 30px 64px -26px rgba(20, 20, 20, 0.34);
+  box-shadow: 0 30px 64px -26px rgba(0, 0, 0, 0.3);
 }
 .dark {
   color: var(--ink);
@@ -132,7 +132,7 @@
 /* the white board needs a hairline so it reads as an object on white */
 .dark[style*="rgb(255, 255, 255)"],
 .board[style*="#FFFFFF"] {
-  box-shadow: 0 30px 64px -26px rgba(20, 20, 20, 0.22), inset 0 0 0 1px #ececee;
+  box-shadow: 0 30px 64px -26px rgba(0, 0, 0, 0.18), inset 0 0 0 1px #e7e8eb;
 }
 
 /* the exposed band — waiting boards reveal exactly this much (UP = 46px),
@@ -164,7 +164,7 @@
   background: rgba(255, 255, 255, 0.2);
 }
 .dark .type {
-  background: rgba(20, 20, 20, 0.1);
+  background: rgba(0, 0, 0, 0.1);
 }
 
 .company {
@@ -235,7 +235,7 @@
   justify-content: center;
   overflow: hidden;
   border-radius: 16px;
-  box-shadow: 0 16px 34px -14px rgba(20, 20, 20, 0.34);
+  box-shadow: 0 16px 34px -14px rgba(0, 0, 0, 0.34);
   transition: transform 0.5s var(--ease-out-expo), box-shadow 0.5s ease;
 }
 .logoWrap img {
@@ -247,14 +247,14 @@
 .card:hover .logoWrap,
 .board:hover .logoWrap {
   transform: translateY(-4px) scale(1.03);
-  box-shadow: 0 24px 46px -14px rgba(20, 20, 20, 0.42);
+  box-shadow: 0 24px 46px -14px rgba(0, 0, 0, 0.42);
 }
 
 /* logos that ship with their own background: shown as a clean tile */
 .tile {
   width: clamp(88px, 9.5vw, 132px);
   aspect-ratio: 1;
-  background: #fff;
+  background: var(--bg);
 }
 
 /* transparent artwork: a light plate, width derived from its true aspect */
@@ -262,7 +262,7 @@
   height: clamp(64px, 7vh, 92px);
   width: calc(clamp(64px, 7vh, 92px) * var(--logo-aspect, 3));
   max-width: min(300px, 26vw);
-  background: #fff;
+  background: var(--bg);
   padding: 0 clamp(12px, 1.4vw, 20px);
   border-radius: 14px;
 }
@@ -278,7 +278,7 @@
   box-shadow: none;
 }
 .dark .mono {
-  background: rgba(20, 20, 20, 0.08);
+  background: rgba(0, 0, 0, 0.08);
 }
 .mono b {
   font-size: clamp(15px, 1.5vw, 20px);
@@ -317,7 +317,7 @@
   min-height: 0;
 }
 .dark .body {
-  border-top-color: rgba(20, 20, 20, 0.14);
+  border-top-color: rgba(0, 0, 0, 0.14);
 }
 .lbl {
   font-size: 10.5px;
@@ -365,20 +365,23 @@
   white-space: nowrap;
 }
 .dark .skills i {
-  background: rgba(20, 20, 20, 0.09);
+  background: rgba(255, 255, 255, 0.15);
 }
 
 /* ---------- foot ---------- */
 .foot {
   position: relative;
   z-index: 5;
+  flex-shrink: 0; /* never crushed by a tall stageWrap */
+  margin-top: auto; /* pushed to bottom of deckMode flex column */
   display: grid;
   grid-template-columns: auto 1fr auto;
   align-items: center;
   gap: 26px;
   max-width: var(--max);
   width: 100%;
-  margin: 0 auto;
+  margin-left: auto;
+  margin-right: auto;
   padding: 14px 44px 24px;
 }
 .count {
@@ -400,7 +403,7 @@
   gap: 8px;
   font-size: 12px;
   font-weight: 700;
-  color: #b9b9bf;
+  color: var(--ink-2);
   padding: 5px 2px;
   cursor: pointer;
   transition: color 0.25s ease;
@@ -409,12 +412,12 @@
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  opacity: 0.4;
-  box-shadow: inset 0 0 0 1px rgba(20, 20, 20, 0.12);
+  opacity: 0.55;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.12);
   transition: opacity 0.25s ease, transform 0.25s ease;
 }
 .navItem:hover {
-  color: var(--ink-2);
+  color: var(--ink);
 }
 .navOn {
   color: var(--ink);
@@ -458,6 +461,11 @@
 @media (max-width: 1000px) {
   .experience {
     padding: 80px 0;
+    overflow-x: clip;
+  }
+  .tint {
+    width: 100%;
+    max-width: 100vw;
   }
   .header {
     padding: 0 24px;
@@ -466,6 +474,8 @@
     display: block;
     perspective: none;
     margin-top: 32px;
+    height: auto;
+    overflow: visible;
   }
   .stage {
     position: static;
@@ -528,6 +538,7 @@
   }
   .summary {
     -webkit-line-clamp: unset;
+  line-clamp: unset;
     display: block;
   }
   .foot {
